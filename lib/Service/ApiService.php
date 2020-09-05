@@ -48,10 +48,12 @@ class ApiService {
 	protected $sessionService;
 	protected $documentService;
 	protected $logger;
+	protected $versionCache;
 
 	public function __construct(IRequest $request, ICacheFactory $cacheFactory, SessionService $sessionService, DocumentService $documentService, ILogger $logger) {
 		$this->request = $request;
 		$this->cache = $cacheFactory->createDistributed('textSession');
+		$this->versionCache = $cacheFactory->createDistributed('text');
 		$this->sessionService = $sessionService;
 		$this->documentService = $documentService;
 		$this->logger = $logger;
@@ -145,7 +147,8 @@ class ApiService {
 		if (!$this->sessionService->isValidSession($documentId, $sessionId, $sessionToken)) {
 			return new DataResponse([], 403);
 		}
-		if ($version === $this->cache->get('document-version-' . $documentId)) {
+
+		if ($version === $this->versionCache->get('document-version-' . $documentId)) {
 			return new DataResponse(['steps' => []]);
 		}
 
