@@ -34,7 +34,7 @@ import {
 	Placeholder,
 } from 'tiptap-extensions'
 import { Strong, Italic, Strike, Link } from './marks'
-import { Image, PlainTextDocument, ListItem } from './nodes'
+import { Image, MathBlock, PlainTextDocument, ListItem } from './nodes'
 import MarkdownIt from 'markdown-it'
 import taskLists from 'markdown-it-task-lists'
 import { translate as t } from '@nextcloud/l10n'
@@ -81,6 +81,7 @@ const createEditor = ({ content, onInit, onUpdate, extensions, enableRichEditing
 				openOnClick: true,
 			}),
 			new Image(),
+			new MathBlock(),
 			new Placeholder({
 				emptyNodeClass: 'is-empty',
 				emptyNodeText: t('text', 'Add notes, lists or links …'),
