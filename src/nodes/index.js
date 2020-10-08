@@ -22,11 +22,13 @@
 
 import Image from './Image'
 import MathBlock from './MathBlock'
+import Math from './Math'
 import PlainTextDocument from './PlainTextDocument'
 import ListItem from './ListItem'
 
 export {
 	Image,
+	Math,
 	MathBlock,
 	PlainTextDocument,
 	ListItem,
